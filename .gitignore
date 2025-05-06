@@ -1,5 +1,21 @@
+# Ignore Python bytecode files
 __pycache__/
+*.py[cod]
+
+# Ignore shared libraries
 *.so*
+*.dylib
+*.dll
+
+# Ignore test.py file
 test.py
+
+# Ignore font files
 *.ttf
+*.otf
+
+# Ignore image files
 *.png
+*.jpg
+*.jpeg
+*.gif
