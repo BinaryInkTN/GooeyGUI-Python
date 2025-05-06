@@ -51,17 +51,8 @@ def GooeyMenu_AddChild(window: ctypes.c_void_p, title: str) -> GooeyMenuChildPtr
 c_lib.GooeyMenuChild_AddElement.argtypes = [GooeyMenuChildPtr, ctypes.c_char_p, GooeyMenuCallback]
 c_lib.GooeyMenuChild_AddElement.restype = None
 
-def GooeyMenuChild_AddElement(child: GooeyMenuChildPtr, title: str, callback: callable):
+def GooeyMenuChild_AddElement(child: GooeyMenuChildPtr, title: str, callback: GooeyMenuCallback):
     """
     Adds an item to the given child menu. Callback will be invoked when the item is selected.
     """
-    if not callable(callback):
-        raise TypeError("Callback must be a callable Python function.")
-    
-    c_callback = GooeyMenuCallback(callback)
-    # Keep a reference to prevent GC
-    if not hasattr(child, "_callback_refs"):
-        child._callback_refs = []
-    child._callback_refs.append(c_callback)
-
-    c_lib.GooeyMenuChild_AddElement(child, title.encode('utf-8'), c_callback)
+    c_lib.GooeyMenuChild_AddElement(child, title.encode('utf-8'), callback)

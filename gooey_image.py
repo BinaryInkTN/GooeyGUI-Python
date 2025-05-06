@@ -24,16 +24,12 @@ GooeyImageCallback = ctypes.CFUNCTYPE(None)
 c_lib.GooeyImage_Create.argtypes = [ctypes.c_char_p, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int, GooeyImageCallback]
 c_lib.GooeyImage_Create.restype = ctypes.POINTER(GooeyImage)
 
-def GooeyImage_Create(image_path: str, x: int, y: int, width: int, height: int, callback=None):
+def GooeyImage_Create(image_path: str, x: int, y: int, width: int, height: int, callback: GooeyImageCallback):
     """
     Creates a GooeyImage and adds it to the window at the specified position and dimensions.
     """
-    if callback:
-        callback_func = GooeyImageCallback(callback)
-    else:
-        callback_func = None
 
-    return c_lib.GooeyImage_Create(image_path.encode('utf-8'), x, y, width, height, callback_func)
+    return c_lib.GooeyImage_Create(image_path.encode('utf-8'), x, y, width, height, callback)
 
 # GooeyImage_SetImage
 c_lib.GooeyImage_SetImage.argtypes = [ctypes.POINTER(GooeyImage), ctypes.c_char_p]

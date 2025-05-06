@@ -20,15 +20,16 @@ from libgooey import *
 class GooeyWindow(ctypes.Structure): pass
 class GooeyTextbox(ctypes.Structure):   pass
 
+GooeyTextboxCallback = ctypes.CFUNCTYPE(None, ctypes.c_char_p)
+
 # GooeyTextBox_Create
-c_lib.GooeyTextBox_Create.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_char_p, ctypes.c_bool, ctypes.CFUNCTYPE(None, ctypes.c_char_p)]
+c_lib.GooeyTextBox_Create.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_char_p, ctypes.c_bool, GooeyTextboxCallback]
 c_lib.GooeyTextBox_Create.restype = ctypes.POINTER(GooeyTextbox)
 
-def GooeyTextBox_Create(x: int, y: int, width: int, height: int, placeholder: str, is_password: bool, onTextChanged):
+def GooeyTextBox_Create(x: int, y: int, width: int, height: int, placeholder: str, is_password: bool, callback: GooeyTextboxCallback):
     """
     Creates a new GooeyTextbox widget at the specified position and dimensions with optional placeholder text.
     """
-    callback = ctypes.CFUNCTYPE(None, ctypes.c_char_p)(onTextChanged)
     c_placeholder = placeholder.encode('utf-8')
     return c_lib.GooeyTextBox_Create(x, y, width, height, c_placeholder, is_password, callback)
 

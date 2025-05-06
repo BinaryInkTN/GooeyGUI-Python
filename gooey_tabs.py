@@ -41,7 +41,7 @@ def GooeyTabs_InsertTab(tabs, tab_name: str):
     c_lib.GooeyTabs_InsertTab(tabs, c_tab_name)
 
 # GooeyTabs_AddWidget
-c_lib.GooeyTabs_AddWidget.argtypes = [ctypes.POINTER(GooeyTabs), ctypes.c_size_t, ctypes.POINTER(GooeyWidget)]
+c_lib.GooeyTabs_AddWidget.argtypes = [ctypes.POINTER(GooeyTabs), ctypes.c_size_t, ctypes.c_void_p]
 c_lib.GooeyTabs_AddWidget.restype = None
 
 def GooeyTabs_AddWidget(tabs, tab_id: int, widget):
