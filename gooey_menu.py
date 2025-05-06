@@ -1,54 +1,68 @@
 """
- Copyright (c) 2025 Yassine Ahmed Ali
+Copyright (c) 2025 Yassine Ahmed Ali
 
- This program is free software: you can redistribute it and/or modify
- it under the terms of the GNU General Public License as published by
- the Free Software Foundation, either version 3 of the License, or
- (at your option) any later version.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
- This program is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
 
- You should have received a copy of the GNU General Public License
- along with this program. If not, see <https://www.gnu.org/licenses/>.
- """
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+"""
 
+import ctypes
+from libgooey import *
 
-from libgooey import *  # Assuming c_lib is defined in libgooey.py
+# Define opaque pointer types
+class GooeyMenu(ctypes.Structure): pass
+class GooeyMenuChild(ctypes.Structure): pass
 
-# void GooeyMenu_Set(void* window);
-c_lib.GooeyMenu_Set.argtypes = [ctypes.c_void_p]
-c_lib.GooeyMenu_Set.restype = ctypes.c_void_p
+GooeyMenuPtr = ctypes.POINTER(GooeyMenu)
+GooeyMenuChildPtr = ctypes.POINTER(GooeyMenuChild)
 
-def GooeyMenu_Set(window: ctypes.c_void_p) -> ctypes.c_void_p:
+# Callback function type for menu elements: void callback()
+GooeyMenuCallback = ctypes.CFUNCTYPE(None)
+
+# GooeyMenu_Set
+c_lib.GooeyMenu_Set.argtypes = [ctypes.c_void_p] 
+c_lib.GooeyMenu_Set.restype = GooeyMenuPtr
+
+def GooeyMenu_Set(window: ctypes.c_void_p) -> GooeyMenuPtr:
     """
-    Sets a new Gooey menu.
+    Sets the menu for the given Gooey window.
     """
     return c_lib.GooeyMenu_Set(window)
 
-# GooeyMenuChild *GooeyMenu_AddChild(GooeyWindow *win, char *title)
+# GooeyMenu_AddChild
 c_lib.GooeyMenu_AddChild.argtypes = [ctypes.c_void_p, ctypes.c_char_p]
-c_lib.GooeyMenu_AddChild.restype = ctypes.c_void_p
+c_lib.GooeyMenu_AddChild.restype = GooeyMenuChildPtr
 
-def GooeyMenu_AddChild(window: ctypes.c_void_p, title: str) -> ctypes.c_void_p:
+def GooeyMenu_AddChild(window: ctypes.c_void_p, title: str) -> GooeyMenuChildPtr:
     """
-    Adds a child to the Gooey menu.
+    Adds a child menu (submenu) to the window's menu.
     """
     return c_lib.GooeyMenu_AddChild(window, title.encode('utf-8'))
 
-# void GooeyMenuChild_AddElement(GooeyMenuChild *child, char *title, void (*callback)())
-c_lib.GooeyMenuChild_AddElement.argtypes = [ctypes.c_void_p, ctypes.c_char_p, ctypes.CFUNCTYPE(None)]
+# GooeyMenuChild_AddElement
+c_lib.GooeyMenuChild_AddElement.argtypes = [GooeyMenuChildPtr, ctypes.c_char_p, GooeyMenuCallback]
 c_lib.GooeyMenuChild_AddElement.restype = None
 
-def GooeyMenuChild_AddElement(child: ctypes.c_void_p, title: str, callback: callable):
+def GooeyMenuChild_AddElement(child: GooeyMenuChildPtr, title: str, callback: callable):
     """
-    Adds an element to the Gooey menu child.
+    Adds an item to the given child menu. Callback will be invoked when the item is selected.
     """
     if not callable(callback):
-        raise TypeError("The callback must be a callable function.")
+        raise TypeError("Callback must be a callable Python function.")
     
-    # TODO: FIX THIS ASAP
-    c_callback = ctypes.CFUNCTYPE(None)(callback)
+    c_callback = GooeyMenuCallback(callback)
+    # Keep a reference to prevent GC
+    if not hasattr(child, "_callback_refs"):
+        child._callback_refs = []
+    child._callback_refs.append(c_callback)
+
     c_lib.GooeyMenuChild_AddElement(child, title.encode('utf-8'), c_callback)
