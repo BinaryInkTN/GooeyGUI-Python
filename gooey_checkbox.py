@@ -19,17 +19,18 @@ from libgooey import *
 
 class GooeyCheckbox(ctypes.Structure): pass
 
+GooeyCheckboxCallback = ctypes.CFUNCTYPE(None, ctypes.c_bool)
+
 # GooeyCheckbox_Create
-c_lib.GooeyCheckbox_Create.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_char_p, ctypes.CFUNCTYPE(None, ctypes.c_bool)]
+c_lib.GooeyCheckbox_Create.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_char_p, GooeyCheckboxCallback]
 c_lib.GooeyCheckbox_Create.restype = ctypes.POINTER(GooeyCheckbox)
 
-def GooeyCheckbox_Create(x: int, y: int, label: str, callback):
+def GooeyCheckbox_Create(x: int, y: int, label: str, callback: GooeyCheckboxCallback):
     """
     Creates a new checkbox in the specified window with the given label.
     The callback is called when the checkbox is clicked, receiving a boolean indicating
     whether the checkbox is checked (True) or unchecked (False).
     """
     label_bytes = label.encode('utf-8')
-    c_callback = ctypes.CFUNCTYPE(None, ctypes.c_bool)(callback)
     
-    return c_lib.GooeyCheckbox_Create(x, y, label_bytes, c_callback)
+    return c_lib.GooeyCheckbox_Create(x, y, label_bytes, callback)

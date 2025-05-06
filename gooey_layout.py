@@ -19,6 +19,12 @@ from libgooey import *
 
 class GooeyLayout(ctypes.Structure): pass
 
+GOOEY_LAYOUT_HORIZONTAL = 0
+GOOEY_LAYOUT_VERTICAL = 1
+GOOEY_LAYOUT_GRID = 2
+
+GooeyLayoutType = ctypes.c_int
+
 # GooeyLayout_Create
 c_lib.GooeyLayout_Create.argtypes = [GooeyLayoutType, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int]
 c_lib.GooeyLayout_Create.restype = ctypes.POINTER(GooeyLayout)
