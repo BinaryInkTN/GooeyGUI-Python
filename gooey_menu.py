@@ -25,7 +25,6 @@ class GooeyMenuChild(ctypes.Structure): pass
 GooeyMenuPtr = ctypes.POINTER(GooeyMenu)
 GooeyMenuChildPtr = ctypes.POINTER(GooeyMenuChild)
 
-# Callback function type for menu elements: void callback()
 GooeyMenuCallback = ctypes.CFUNCTYPE(None)
 
 # GooeyMenu_Set

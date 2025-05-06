@@ -30,13 +30,10 @@ def GooeyDropdown_Create(x: int, y: int, width: int, height: int, options: list,
     function is called when an option is selected, and it receives the index 
     of the selected option.
     """
-    # Convert options to a list of ctypes strings
     c_options = (ctypes.POINTER(ctypes.c_char) * len(options))()
     for i, option in enumerate(options):
         c_options[i] = ctypes.c_char_p(option.encode('utf-8'))
     
-    # Create the callback function
     c_callback = ctypes.CFUNCTYPE(None, ctypes.c_int)(callback)
     
-    # Create the dropdown menu
     return c_lib.GooeyDropdown_Create(x, y, width, height, c_options, len(options), c_callback)

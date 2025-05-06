@@ -28,14 +28,11 @@ def GooeyMessageBox_Create(title: str, message: str, msg_type: int, callback):
     Creates a message box with a given title, message, type, and callback to handle user input.
     The callback is triggered when the user interacts with the message box.
     """
-    # Convert title and message to bytes
     title_bytes = title.encode('utf-8')
     message_bytes = message.encode('utf-8')
     
-    # Create the callback function
     c_callback = ctypes.CFUNCTYPE(None, ctypes.c_int)(callback)
     
-    # Create and return the message box window
     return c_lib.GooeyMessageBox_Create(title_bytes, message_bytes, msg_type, c_callback)
 
 # GooeyMessageBox_Show
