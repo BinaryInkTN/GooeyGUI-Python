@@ -69,3 +69,19 @@ def GooeyWindow_RegisterWidget(window: ctypes.c_void_p, widget: ctypes.c_void_p)
     Register a widget with the Gooey window.
     """
     c_lib.GooeyWindow_RegisterWidget(window, widget)
+
+c_lib.GooeyWindow_MakeResizable.argtypes = [ctypes.c_void_p, ctypes.c_bool]
+c_lib.GooeyWindow_MakeResizable.restype = None
+def GooeyWindow_MakeResizable(window: ctypes.c_void_p, state: ctypes.c_bool):
+    """
+    Manage visibility on a Gooey window.
+    """
+    c_lib.GooeyWindow_MakeResizable(window, state)
+    
+c_lib.GooeyWindow_RequestCleanup.argtypes = [ctypes.c_void_p]
+c_lib.GooeyWindow_RequestCleanup.restype = None
+def GooeyWindow_RequestCleanup(window: ctypes.c_void_p):
+    """
+    Request cleanup for a Gooey window.
+    """
+    c_lib.GooeyWindow_RequestCleanup(window)

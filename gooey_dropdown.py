@@ -38,3 +38,19 @@ def GooeyDropdown_Create(x: int, y: int, width: int, height: int, options: list,
     
     c_options = ctypes.cast(c_options_array, ctypes.POINTER(ctypes.POINTER(ctypes.c_char)))
     return c_lib.GooeyDropdown_Create(x, y, width, height, c_options, len(options), callback)
+
+# GooeyDropdown_Update
+c_lib.GooeyDropdown_Update.argtypes = [ctypes.POINTER(GooeyDropdown), ctypes.POINTER(ctypes.POINTER(ctypes.c_char)), ctypes.c_int]
+c_lib.GooeyDropdown_Update.restype = None
+
+def GooeyDropdown_Update(dropdown: ctypes.POINTER(GooeyDropdown), new_options: list, num_options: int):
+    """
+    Updates the options of an existing dropdown menu. The dropdown's appearance 
+    and configuration remain unchanged.
+    """
+    c_options_array = (ctypes.c_char_p * len(new_options))()
+    for i, option in enumerate(new_options):
+        c_options_array[i] = ctypes.c_char_p(option.encode('utf-8'))
+    
+    c_options = ctypes.cast(c_options_array, ctypes.POINTER(ctypes.POINTER(ctypes.c_char)))
+    c_lib.GooeyDropdown_Update(dropdown, c_options, num_options)

@@ -18,13 +18,15 @@
 from libgooey import *
 import ctypes
 
+#list
 class GooeyList(ctypes.Structure): pass
+GooeyListCallback = ctypes.CFUNCTYPE(ctypes.c_int)
 
 # GooeyList_Create
 c_lib.GooeyList_Create.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.CFUNCTYPE(None, ctypes.c_int)]
 c_lib.GooeyList_Create.restype = ctypes.POINTER(GooeyList)
 
-def GooeyList_Create(x: int, y: int, width: int, height: int, callback):
+def GooeyList_Create(x: int, y: int, width: int, height: int, callback: GooeyListCallback):
     """
     Creates a new GooeyList widget and attaches it to a window.
     """

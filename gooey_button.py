@@ -63,3 +63,13 @@ def GooeyButton_SetHighlight(button: GooeyButtonPtr, is_highlighted: bool):
     Highlight or unhighlight a Gooey button.
     """
     c_lib.GooeyButton_SetHighlight(button, is_highlighted)
+    
+# GooeyButton_SetEnabled
+c_lib.GooeyButton_SetEnabled.argtypes = [GooeyButtonPtr, ctypes.c_bool]
+c_lib.GooeyButton_SetEnabled.restype = None
+
+def GooeyButton_SetEnabled(button: GooeyButtonPtr, is_enabled: bool):
+    """
+    Enable or Disable a Gooey button.
+    """
+    c_lib.GooeyButton_SetEnabled(button, is_enabled)

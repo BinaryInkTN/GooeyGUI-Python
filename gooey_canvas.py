@@ -22,15 +22,19 @@ class GooeyCanvas(ctypes.Structure): pass
 
 GooeyCanvasPtr = ctypes.POINTER(GooeyCanvas)
 
+GooeyCanvasCallback = ctypes.CFUNCTYPE(None, ctypes.c_int, ctypes.c_int)
+
 # GooeyCanvas_Create
-c_lib.GooeyCanvas_Create.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int]
+c_lib.GooeyCanvas_Create.argtypes = [ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int, GooeyCanvasCallback]
 c_lib.GooeyCanvas_Create.restype = GooeyCanvasPtr
 
-def GooeyCanvas_Create(x: int, y: int, width: int, height: int) -> ctypes.POINTER(GooeyCanvas):
+from typing import Any
+
+def GooeyCanvas_Create(x: int, y: int, width: int, height: int, callback) -> GooeyCanvasPtr:
     """
     Creates a new GooeyCanvas.
     """
-    return c_lib.GooeyCanvas_Create(x, y, width, height)
+    return c_lib.GooeyCanvas_Create(x, y, width, height, callback)
 
 # GooeyCanvas_DrawRectangle
 c_lib.GooeyCanvas_DrawRectangle.argtypes = [

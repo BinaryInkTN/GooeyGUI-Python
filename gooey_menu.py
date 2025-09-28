@@ -45,7 +45,7 @@ def GooeyMenu_AddChild(window: ctypes.c_void_p, title: str) -> GooeyMenuChildPtr
     """
     Adds a child menu (submenu) to the window's menu.
     """
-    return c_lib.GooeyMenu_AddChild(window, title.encode('utf-8'))
+    return c_lib.GooeyMenu_AddChild(window, ctypes.c_char_p(title.encode('utf-8')))
 
 # GooeyMenuChild_AddElement
 c_lib.GooeyMenuChild_AddElement.argtypes = [GooeyMenuChildPtr, ctypes.c_char_p, GooeyMenuCallback]
@@ -55,4 +55,4 @@ def GooeyMenuChild_AddElement(child: GooeyMenuChildPtr, title: str, callback: Go
     """
     Adds an item to the given child menu. Callback will be invoked when the item is selected.
     """
-    c_lib.GooeyMenuChild_AddElement(child, title.encode('utf-8'), callback)
+    c_lib.GooeyMenuChild_AddElement(child,  ctypes.c_char_p(title.encode('utf-8')), callback)

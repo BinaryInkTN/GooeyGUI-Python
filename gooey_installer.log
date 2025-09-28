@@ -1,0 +1,47 @@
+[2025-09-23 22:08:22] [INFO] === Gooey Framework Installer Started ===
+[2025-09-23 22:08:22] [INFO] Timestamp: 2025-09-23 22:08:22.373348
+[2025-09-23 22:08:22] [INFO] Version: 1.0.3
+[2025-09-23 22:08:22] [INFO] Platform: Linux 6.14.0-29-generic
+[2025-09-23 22:08:22] [INFO] Python: 3.12.3
+[2025-09-23 22:08:22] [ERROR] Failed to initialize UI: name 'GooeyCheckbox_SetChecked' is not defined
+[2025-09-23 22:08:48] [INFO] === Gooey Framework Installer Started ===
+[2025-09-23 22:08:48] [INFO] Timestamp: 2025-09-23 22:08:48.453083
+[2025-09-23 22:08:48] [INFO] Version: 1.0.3
+[2025-09-23 22:08:48] [INFO] Platform: Linux 6.14.0-29-generic
+[2025-09-23 22:08:48] [INFO] Python: 3.12.3
+[2025-09-23 22:08:48] [ERROR] Failed to initialize UI: name 'GooeyCheckbox_SetChecked' is not defined
+[2025-09-23 22:09:34] [INFO] === Gooey Framework Installer Started ===
+[2025-09-23 22:09:34] [INFO] Timestamp: 2025-09-23 22:09:34.025913
+[2025-09-23 22:09:34] [INFO] Version: 1.0.3
+[2025-09-23 22:09:34] [INFO] Platform: Linux 6.14.0-29-generic
+[2025-09-23 22:09:34] [INFO] Python: 3.12.3
+[2025-09-23 22:09:34] [ERROR] Failed to initialize UI: name 'GooeyCheckbox_SetChecked' is not defined
+[2025-09-23 22:09:44] [INFO] === Gooey Framework Installer Started ===
+[2025-09-23 22:09:44] [INFO] Timestamp: 2025-09-23 22:09:44.113326
+[2025-09-23 22:09:44] [INFO] Version: 1.0.3
+[2025-09-23 22:09:44] [INFO] Platform: Linux 6.14.0-29-generic
+[2025-09-23 22:09:44] [INFO] Python: 3.12.3
+[2025-09-23 22:09:44] [INFO] Installer UI started successfully
+[2025-09-23 22:09:52] [INFO] === Gooey Framework Installer Started ===
+[2025-09-23 22:09:52] [INFO] Timestamp: 2025-09-23 22:09:52.915736
+[2025-09-23 22:09:52] [INFO] Version: 1.0.3
+[2025-09-23 22:09:52] [INFO] Platform: Linux 6.14.0-29-generic
+[2025-09-23 22:09:52] [INFO] Python: 3.12.3
+[2025-09-23 22:09:53] [ERROR] Failed to initialize UI: name 'GooeyCheckbox_SetChecked' is not defined
+[2025-09-23 22:10:07] [INFO] === Gooey Framework Installer Started ===
+[2025-09-23 22:10:07] [INFO] Timestamp: 2025-09-23 22:10:07.661671
+[2025-09-23 22:10:07] [INFO] Version: 1.0.3
+[2025-09-23 22:10:07] [INFO] Platform: Linux 6.14.0-29-generic
+[2025-09-23 22:10:07] [INFO] Python: 3.12.3
+[2025-09-23 22:10:07] [ERROR] Failed to initialize UI: name 'GooeyCheckbox_SetChecked' is not defined
+[2025-09-23 22:10:19] [INFO] === Gooey Framework Installer Started ===
+[2025-09-23 22:10:19] [INFO] Timestamp: 2025-09-23 22:10:19.396333
+[2025-09-23 22:10:19] [INFO] Version: 1.0.3
+[2025-09-23 22:10:19] [INFO] Platform: Linux 6.14.0-29-generic
+[2025-09-23 22:10:19] [INFO] Python: 3.12.3
+[2025-09-23 22:10:19] [ERROR] Failed to initialize UI: name 'GooeyCheckbox_SetChecked' is not defined
+2025-09-23 22:35:18,463 - INFO - Starting Gooey Framework Installer
+2025-09-23 22:35:18,573 - ERROR - Fatal error in installer: name 'GooeyCheckbox_SetChecked' is not defined
+2025-09-23 22:35:41,835 - INFO - Starting Gooey Framework Installer
+2025-09-23 22:35:41,940 - ERROR - Fatal error in installer: name 'GooeyCheckbox_SetChecked' is not defined
+2025-09-23 22:35:55,993 - INFO - Starting Gooey Framework Installer

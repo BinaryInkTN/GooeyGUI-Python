@@ -19,16 +19,18 @@
 import ctypes
 import pathlib
 
-libname = pathlib.Path().absolute() / "libGooeyGUI.so"
-c_lib = ctypes.CDLL(str(libname))
+
+
+# Load the shared library libname = "/usr/local/lib/libGooeyGUI.so"
+c_lib = ctypes.CDLL("lib/libGooeyGUI-1.so")
 
 
 # void Gooey_Init(void);
 c_lib.Gooey_Init.argtypes = []
 c_lib.Gooey_Init.restype = None
 
-
 # --- Python wrappers ---
+
 
 def Gooey_Init():
     """
