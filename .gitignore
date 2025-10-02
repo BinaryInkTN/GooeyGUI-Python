@@ -1,4 +1,5 @@
 # Ignore Python bytecode files
+dist
 __pycache__/
 env
 GooeyGUI_Python.egg-info/
