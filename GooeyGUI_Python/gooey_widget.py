@@ -1,4 +1,4 @@
-from libgooey import *
+from .libgooey import *
 import ctypes
 
 # Define the GooeyWidget struct and pointer type

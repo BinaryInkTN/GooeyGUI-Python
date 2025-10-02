@@ -16,7 +16,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 """
 
 import ctypes
-from libgooey import *
+from .libgooey import *
 
 # Define opaque pointer types
 class GooeyMenu(ctypes.Structure): pass

@@ -16,7 +16,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 """
 
 import ctypes
-from libgooey import *
+from .libgooey import *
 
 # Define opaque pointer type
 class GooeyMeter(ctypes.Structure): pass

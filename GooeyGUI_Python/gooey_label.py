@@ -15,7 +15,7 @@
  along with this program. If not, see <https://www.gnu.org/licenses/>.
 """
 
-from libgooey import *
+from .libgooey import *
 import ctypes
 
 class GooeyLabel(ctypes.Structure): pass

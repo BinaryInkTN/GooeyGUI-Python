@@ -16,7 +16,7 @@
  """
 
 
-from libgooey import *
+from .libgooey import *
 
 
 # --- Debug  ---
