@@ -18,3 +18,4 @@ Follow the instructions in the main **Gooey** C repository to compile the librar
 
    ```bash
    pip install ctypes
+   ```
