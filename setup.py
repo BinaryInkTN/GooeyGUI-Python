@@ -101,7 +101,7 @@ cmdclass = {
 
 setup(
     name="GooeyGUI_Python",
-    version="1.0.0",
+    version="1.0.2",
     author="BinaryInk",
     author_email="contact@binaryink.dev",
     description="A Python GUI library ported from C",
