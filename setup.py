@@ -38,7 +38,7 @@ class BuildCLibraryMixin:
             build_path = os.path.join(build_dir, "build")
             if not os.path.exists(build_path):
 
-                print(f"Creating build directory: {build_path}")
+                print(f"Creating build directory: {build_path}",flush=True)
                 os.makedirs(build_path, exist_ok=True)
                 os.chdir(build_path)
             
@@ -58,24 +58,33 @@ class BuildCLibraryMixin:
             # Find ALL built libraries (more comprehensive search)
 
             target_path=os.path.join(original_dir,"GooeyGUI-Python/lib")
-            print("Searching for compiled libraries...")
-            target_path = os.path.join(lib_path, "libGooeyGUI-1.so")
-            subprocess.check_call(["cp", lib_path, target_path])
+            print("Searching for compiled libraries...",flush=True)
+            source_dir = os.path.join(lib_path, "libGooeyGUI-1.so")
+            subprocess.check_call(["cp", source_dir,target_path ])
             print(f"Successfully copied {lib_path} to {target_path}")
-                
+
+            lib_path= os.path.join(build_path,"lib");
+            # Find ALL built libraries (more comprehensive search)
+
+            target_path=os.path.join(original_dir,"GooeyGUI-Python/lib")
+            print("Searching for compiled libraries...",flush=True)
+            source_dir = os.path.join(lib_path, "libGLPS.so")
+            subprocess.check_call(["cp", source_dir,target_path ])
+            print(f"Successfully copied {lib_path} to {target_path}")
+                 
             # Cleanup
-            print("Cleaning up build directory...")
+            print("Cleaning up build directory...", flush=True)
             # subprocess.check_call(["rm", "-rf", build_dir])
             print("=== C library build completed ===")
             
         except subprocess.CalledProcessError as e:
-            print(f"=== Build failed with subprocess error: {e} ===")
-            print(f"Command output: {e.stderr}")
+            print(f"=== Build failed with subprocess error: {e} ===",flush=True)
+            print(f"Command output: {e.stderr}",flush=True)
             os.chdir(original_dir)
             
             # Create placeholder to allow installation to continue
         except Exception as e:
-            print(f"=== Build failed with unexpected error: {e} ===")
+            print(f"=== Build failed with unexpected error: {e} ===",flush=True)
             os.chdir(original_dir)
             raise
 
@@ -101,7 +110,7 @@ cmdclass = {
 
 setup(
     name="GooeyGUI_Python",
-    version="1.0.2",
+    version="1.0.5",
     author="BinaryInk",
     author_email="contact@binaryink.dev",
     description="A Python GUI library ported from C",
@@ -109,7 +118,7 @@ setup(
     long_description_content_type="text/markdown",
     packages=find_packages(),
     package_data={
-        "GooeyGUI_Python": ["lib/*.so", "lib/*.dll", "lib/*.dylib", "lib/*.a"]
+        "GooeyGUI-Python": ["lib/*.so", "lib/*.dll", "lib/*.dylib", "lib/*.a"]
     },
     include_package_data=True, 
     install_requires=[],

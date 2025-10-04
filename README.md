@@ -15,4 +15,12 @@ Follow the instructions in the main **Gooey** C repository to compile the librar
 1. Clone this repository or download the Python bindings.
 2. Ensure the compiled shared library (`libgooey.so`, `libgooey.dll`, or `libgooey.dylib`) is available in the same directory as the Python bindings.
 
-
+### Conrtribution
+- to build 
+```bash
+python3 setup.py bdist_wheel
+```
+- to push to pypi
+```bash
+twine upload dist/*
+```
